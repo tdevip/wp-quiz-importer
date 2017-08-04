@@ -155,7 +155,7 @@ class Wp_Quiz_Importer_Admin {
 
 				//apply filters in case file location is different
 				//Note: the path must be an absolute path
-				$helperpath = apply_filters('wpqi_importer_path', $helperpath, $helpername);
+				$helperpath = apply_filters('wpqi_importer', $helperpath, $helpername);
 			}
 
 			// User has permissions to upload the quiz
@@ -269,10 +269,20 @@ class Wp_Quiz_Importer_Admin {
 	 * @since 	1.0.0
 	 */
 	private function valid_xml_schema($filename) {
-		libxml_use_internal_errors(true);
-		$xml = new DOMDocument();
-		$xml->load($filename);
+		$url = WPQI_PLUGIN_DIR . '/assets/xml_schema.xsd';
+		$url = apply_filters('wpqi_valid_schema', $url);
 
-		return apply_filters('wpqi_validate_schema', $xml->schemaValidate(WPQI_PLUGIN_DIR . '/assets/xml_schema.xsd') );
+		$result = false;
+		if( file_exists($url) ) {
+			libxml_use_internal_errors(true);
+			$xml = new DOMDocument();
+			$xml->load($filename);
+			$result = $xml->schemaValidate($url);
+		} else {
+			$this->messenger->add_error_message( __('Could not find valid schema file '.$url.'.', 'wp-quiz-importer') );
+			$result = false;
+		}
+
+		return $result;
 	}
 }
