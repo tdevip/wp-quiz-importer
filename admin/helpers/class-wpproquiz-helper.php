@@ -93,20 +93,14 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 	  			$value = $child->nodeValue;
 				if( !isset($value) ) continue;
 
-	  			$isCorrect = 'no';
-		  		if ( $child->hasAttribute('q_correct') ) {
-		  			$isCorrect = ('yes' === $child->getAttribute('q_correct') ) ? 'yes' : 'no';
-		  		}
-
-		  		$sortText = '';
-		  		if ( $child->hasAttribute('q_sort') ) {
-		  			$sortText = $answer->getAttribute('q_sort');
-		  		}
+		  		//first answer is the correct answer
+		  		$isCorrect = 'no';
+		  		if(empty($answers)) $isCorrect = 'yes';
 
 				$answers[] = array(
-					'q_correct' => $isCorrect,
-					'q_sort' 	=> $sortText,
 					'q_ans'  	=> $value,
+					'q_ans_correct' => $isCorrect,
+					'q_ans_sort' 	=> '',
 				);
 			}
 
@@ -133,7 +127,7 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 				'q_name' 	=> isset($data['q_name']) 	  ? convert_chars($data['q_name']) : 'Q' . $index,
 				'q_content' => isset($data['q_content'])  ? wpautop(convert_chars($data['q_content'])) : 'Enter content here',
 				'q_type' 	=> isset($data['q_type']) 	  ? $this->get_question_type($data['q_type']) : $this->get_question_type('SC'),
-				'q_mark' 	=> isset($data['q_mark']) 	  ? intval($data['q_mark']) : 1,
+				'q_mark' 	=> intval($data['q_mark']) 	  ? intval($data['q_mark']) : 1,
 			);
 
 			return $question_fields;
@@ -188,9 +182,9 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 
 				$Adata = array();
 				foreach ($sanitized_answers as $sanitized_answer) {
-					$Adata[] = array( '@attributes' => array( 'points' => 1, 'correct' => $sanitized_answer['q_correct'] ),
+					$Adata[] = array( '@attributes' => array( 'points' => 1, 'correct' => $sanitized_answer['q_ans_correct'] ),
 									  'answerText'  => array( '@attributes' => array( 'html' => 'true' ), '@value' => $sanitized_answer['q_ans'] ),
-									  'stortText'   => array( '@attributes' => array( 'html' => 'true' ), '@value' => $sanitized_answer['q_sort'] )
+									  'stortText'   => array( '@attributes' => array( 'html' => 'true' ), '@value' => $sanitized_answer['q_ans_sort'] )
 									);
 				}
 
@@ -198,13 +192,13 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 								  'title'			=> array( '@value' => $sanitized_question['q_name'] ),
 								  'points'			=> array( '@value' => $sanitized_question['q_mark'] ),
 								  'questionText'	=> array( '@value' => $sanitized_question['q_content'] ),
-								  'correctMsg'		=> array( '@value' => 'Enter solution here' ),
-								  'incorrectMsg'	=> array( '@value' => 'Enter solution here' ),
+								  'correctMsg'		=> array( '@value' => 'Enter correct message here' ),
+								  'incorrectMsg'	=> array( '@value' => 'Enter incorrect message here' ),
 								  'tipMsg'			=> array( '@attributes' => array( 'enabled' => 'false' ) ),
 								  'category'		=> array(),
 								  'correctSameText'	=> array( '@value' => 'true' ),
 								  'showPointsInBox'	=> array( '@value' => 'true' ),
-								  'answerPointsActivated' => array( '@value' => 'true' ),
+								  'answerPointsActivated' => array( '@value' => 'false' ),
 								  'answerPointsDiffModusActivated' => array( '@value' => 'false' ),
 								  'disableCorrect'	=> array( '@value' => 'false' ),
 								  'answers'			=> array( 'answer' => $Adata )

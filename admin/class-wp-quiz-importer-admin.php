@@ -155,7 +155,10 @@ class Wp_Quiz_Importer_Admin {
 
 				//apply filters in case file location is different
 				//Note: the path must be an absolute path
-				$helperpath = apply_filters('wpqi_importer', $helperpath, $helpername);
+				$helperpath = apply_filters('wpqi_importer_path', $helperpath, $helpername);
+
+				//apply filters in case class name is different
+				$helperclass = apply_filters('wpqi_importer_class', $helperclass);
 			}
 
 			// User has permissions to upload the quiz
