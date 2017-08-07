@@ -94,8 +94,8 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 				if( !isset($value) ) continue;
 
 		  		//first answer is the correct answer
-		  		$isCorrect = 'false';
-		  		if(empty($answers)) $isCorrect = 'true';
+		  		$isCorrect = 'no';
+		  		if(empty($answers)) $isCorrect = 'yes';
 
 				$answers[] = array(
 					'q_ans'  	=> $value,
@@ -182,7 +182,9 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 
 				$Adata = array();
 				foreach ($sanitized_answers as $sanitized_answer) {
-					$Adata[] = array( '@attributes' => array( 'points' => 1, 'correct' => $sanitized_answer['q_ans_correct'] ),
+					$Adata[] = array( '@attributes' => array( 'points' => 1,
+						                                      'correct' => ('yes' === $sanitized_answer['q_ans_correct']) ? true : false,
+						                                    ),
 									  'answerText'  => array( '@attributes' => array( 'html' => 'true' ), '@value' => $sanitized_answer['q_ans'] ),
 									  'stortText'   => array( '@attributes' => array( 'html' => 'true' ), '@value' => $sanitized_answer['q_ans_sort'] )
 									);
