@@ -94,8 +94,8 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 				if( !isset($value) ) continue;
 
 		  		//first answer is the correct answer
-		  		$isCorrect = 'no';
-		  		if(empty($answers)) $isCorrect = 'yes';
+		  		$isCorrect = 'false';
+		  		if(empty($answers)) $isCorrect = 'true';
 
 				$answers[] = array(
 					'q_ans'  	=> $value,
