@@ -69,11 +69,6 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 	  		$types = array(
 	  			'SC' => 'single',
 	  			'MC' => 'multiple',
-	  			'FA' => 'free_answer',
-	  			'SA' => 'sort_answer',
-	  			'CA' => 'cloze_answer',
-	  			'MS' => 'matrix_sort_answer',
-	  			'AA' => 'assessment_answer',
 	  		);
 
 	  		return array_key_exists($type, $types) ? $types[$type] : $types['SC'];
