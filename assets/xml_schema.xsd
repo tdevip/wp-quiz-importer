@@ -12,7 +12,15 @@
               <xs:element name="answers">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element type="xs:string" name="q_ans" maxOccurs="unbounded" minOccurs="0"/>
+                    <xs:element name="q_ans" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute type="xs:string" name="q_ans_correct" use="optional"/>
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
                   </xs:sequence>
                 </xs:complexType>
               </xs:element>

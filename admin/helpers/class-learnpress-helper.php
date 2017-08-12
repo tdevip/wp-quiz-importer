@@ -100,9 +100,11 @@ if ( !class_exists( 'wpqi_learnpress_helper' ) ) {
 	  			$value = $child->nodeValue;
 				if( !isset($value) ) continue;
 
-	  			//first answer is the correct answer
+	  			//check for correct answers
 		  		$isCorrect = 'no';
-		  		if(empty($answers)) $isCorrect = 'yes';
+		  		if($child->hasAttribute('q_ans_correct')) {
+		  			$isCorrect = ("yes" === $child->getAttribute("q_ans_correct")) ? "yes" : "no";
+		  		}
 
 				$answers[] = array(
 					'answer_data'  => array(
