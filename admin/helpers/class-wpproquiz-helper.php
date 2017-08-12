@@ -275,7 +275,7 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 	  			)
 	  		);
 
-			require_once(WPQI_PLUGIN_DIR . '/assets/class-array-2-xml.php');
+			require_once(WPQI_PLUGIN_DIR . 'vendor/class-array-2-xml.php');
 			$dom = Array2XML::createXML('wpProQuiz', $data);
 			$xml = $dom->saveXML();
 

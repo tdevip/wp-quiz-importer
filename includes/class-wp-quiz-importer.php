@@ -111,8 +111,8 @@ class Wp_Quiz_Importer {
 		/**
 		 * The following two class responsible for managing messageing system
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/messenger/class-settings-messenger.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/messenger/class-settings-message.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/messenger/class-settings-messenger.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/messenger/class-settings-message.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
