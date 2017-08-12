@@ -150,7 +150,7 @@ class Wp_Quiz_Importer_Admin {
 			if( isset( $_POST['wp_quiz_provider'] ) ) {
 				//create imprter helper path and class name
 				$helpername  = $_POST['wp_quiz_provider'];
-				$helperpath  = WPQI_PLUGIN_DIR . '/admin/helpers/class-' . $helpername . '-helper.php';
+				$helperpath  = WPQI_PLUGIN_DIR . 'admin/helpers/class-' . $helpername . '-helper.php';
 				$helperclass = 'wpqi_' . str_replace('-', '_', $helpername) . '_helper';
 
 				//apply filters in case file location is different
@@ -272,7 +272,7 @@ class Wp_Quiz_Importer_Admin {
 	 * @since 	1.0.0
 	 */
 	private function valid_xml_schema($filename) {
-		$url = WPQI_PLUGIN_DIR . '/assets/xml_schema.xsd';
+		$url = WPQI_PLUGIN_DIR . 'admin/helpers/xml_schema.xsd';
 		$url = apply_filters('wpqi_valid_schema', $url);
 
 		$result = false;
