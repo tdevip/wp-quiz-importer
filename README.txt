@@ -4,7 +4,8 @@ Donate link: http://www.tdevip.com/
 Tags: import, quiz, questions, MSWord
 Requires at least: 3.0.1
 Tested up to: 4.8
-Stable tag: 4.3
+Stable tag: 1.0.0
+Version: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
