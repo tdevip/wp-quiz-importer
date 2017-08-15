@@ -16,7 +16,7 @@
  * Plugin Name:       Wp Quiz Importer
  * Plugin URI:        http://www.tdevip.com/wp-quiz-importer
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Prasad Tumula
  * Author URI:        http://www.tdevip.com/
  * License:           GPL-2.0+

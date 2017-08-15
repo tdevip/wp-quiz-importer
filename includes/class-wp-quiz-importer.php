@@ -69,7 +69,7 @@ class Wp_Quiz_Importer {
 	public function __construct() {
 
 		$this->plugin_name = 'wp-quiz-importer';
-		$this->version = '1.0.0';
+		$this->version = '1.0.1';
 
 		$this->load_dependencies();
 		$this->set_locale();
