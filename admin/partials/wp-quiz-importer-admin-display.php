@@ -39,6 +39,10 @@
 							<input type="radio" name="wp_quiz_provider" value="learnpress" />
 							<span><?php esc_attr_e( 'LearnPress', 'wp-quiz-importer' ); ?></span>
 						</label>
+						<label title='g:i a' class="quiz-import-radio">
+							<input type="radio" name="wp_quiz_provider" value="learndash" />
+							<span><?php esc_attr_e( 'LearnDash', 'wp-quiz-importer' ); ?></span>
+						</label>
 					</fieldset>
 				</td>
 			</tr>
