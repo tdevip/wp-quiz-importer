@@ -67,11 +67,11 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
          */
 	  	private function get_question_type($type) {
 	  		$types = array(
-	  			'SC' => 'single',
-	  			'MC' => 'multiple',
+	  			'MC' => 'single',
+	  			'MS' => 'multiple',
 	  		);
 
-	  		return array_key_exists($type, $types) ? $types[$type] : $types['SC'];
+	  		return array_key_exists($type, $types) ? $types[$type] : $types['MC'];
 	  	}
 
 	  	/**
@@ -89,9 +89,9 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 				if( !isset($value) ) continue;
 
 		  		//check for correct answers
-		  		$isCorrect = 'no';
+		  		$isCorrect = false;
 		  		if($child->hasAttribute('q_ans_correct')) {
-		  			$isCorrect = ("yes" === $child->getAttribute("q_ans_correct")) ? "yes" : "no";
+		  			$isCorrect = ("yes" === $child->getAttribute("q_ans_correct")) ? true : false;
 		  		}
 
 				$answers[] = array(
@@ -123,7 +123,7 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 			$question_fields = array(
 				'q_name' 	=> isset($data['q_name']) 	  ? convert_chars($data['q_name']) : 'Q' . $index,
 				'q_content' => isset($data['q_content'])  ? wpautop(convert_chars($data['q_content'])) : 'Enter content here',
-				'q_type' 	=> isset($data['q_type']) 	  ? $this->get_question_type($data['q_type']) : $this->get_question_type('SC'),
+				'q_type' 	=> isset($data['q_type']) 	  ? $this->get_question_type($data['q_type']) : $this->get_question_type('MC'),
 				'q_mark' 	=> intval($data['q_mark']) 	  ? intval($data['q_mark']) : 1,
 			);
 
@@ -180,7 +180,7 @@ if ( !class_exists( 'wpqi_wpproquiz_helper' ) ) {
 				$Adata = array();
 				foreach ($sanitized_answers as $sanitized_answer) {
 					$Adata[] = array( '@attributes' => array( 'points' => 1,
-						                                      'correct' => ('yes' === $sanitized_answer['q_ans_correct']) ? true : false,
+						                                      'correct' => $sanitized_answer['q_ans_correct'],
 						                                    ),
 									  'answerText'  => array( '@attributes' => array( 'html' => 'true' ), '@value' => $sanitized_answer['q_ans'] ),
 									  'stortText'   => array( '@attributes' => array( 'html' => 'true' ), '@value' => $sanitized_answer['q_ans_sort'] )
