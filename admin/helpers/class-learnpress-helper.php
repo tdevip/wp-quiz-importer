@@ -59,12 +59,11 @@ if ( !class_exists( 'wpqi_learnpress_helper' ) ) {
 	  	private function get_question_type($type) {
 
 	  		$types = array(
-	  			'SC' => 'single_choice',
-	  			'MC' => 'multi_choice',
-	  			'TF' => 'true_or_false'
+	  			'MC' => 'single_choice',
+	  			'MS' => 'multi_choice',
 	  		);
 
-	  		return array_key_exists($type, $types) ? $types[$type] : $types['SC'];
+	  		return array_key_exists($type, $types) ? $types[$type] : $types['MC'];
 	  	}
 
 	  	/**
@@ -137,7 +136,7 @@ if ( !class_exists( 'wpqi_learnpress_helper' ) ) {
 
 			//sanitised post meta fields
 			$meta_fields = array(
-	  			'_lp_type' 		  => isset($data['q_type']) 	? $this->get_question_type($data['q_type']) : $this->get_question_type('SC'),
+	  			'_lp_type' 		  => isset($data['q_type']) 	? $this->get_question_type($data['q_type']) : $this->get_question_type('MC'),
 	  			'_lp_mark' 		  => isset($data['q_mark']) 	? intval($data['q_mark']) : 1,
 	  			'_lp_explanation' => 'Enter solution here',
 	  			'_lp_hint'		  => 'Enter hint here'

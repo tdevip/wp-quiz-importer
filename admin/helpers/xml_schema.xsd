@@ -6,9 +6,12 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element type="xs:string" name="q_name"/>
+              <xs:element type="xs:string" name="q_content"/>
               <xs:element type="xs:string" name="q_type"/>
               <xs:element type="xs:int" name="q_mark"/>
-              <xs:element type="xs:string" name="q_content"/>
+              <xs:element type="xs:string" name="q_hint"/>
+              <xs:element type="xs:string" name="q_correct"/>
+              <xs:element type="xs:string" name="q_wrong"/>
               <xs:element name="answers">
                 <xs:complexType>
                   <xs:sequence>
@@ -17,6 +20,7 @@
                         <xs:simpleContent>
                           <xs:extension base="xs:string">
                             <xs:attribute type="xs:string" name="q_ans_correct" use="optional"/>
+                            <xs:attribute type="xs:string" name="q_ans_mark" use="optional"/>
                           </xs:extension>
                         </xs:simpleContent>
                       </xs:complexType>
